@@ -44,9 +44,9 @@ impl Server {
                     match stream.read(&mut buffer) {
                         Ok(_) => {
                             let data = &String::from_utf8_lossy(&buffer);
-                            let tuple  = KeyValue::from_str(data).unwrap();
+                            let KeyValue {key, value} = KeyValue::from_str(data).unwrap();
                             
-                            println!("key: {}, value: {}", tuple.key, tuple.value);
+                            println!("key: {}, value: {}", key, value);
                         },
                         Err(e) => println!("Failed to establish a connection: {}", e),
                     }
